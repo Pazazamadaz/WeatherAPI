@@ -17,19 +17,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/weatherforecast", async () =>
-{
-    Console.WriteLine("Please enter the name of a valid city:");
-    string strCityName = "";
-    strCityName = Console.ReadLine().Trim();
-    bool bCityNameOK = ValidateUserInput(strCityName);
-    
-    if (bCityNameOK)
+app.MapGet("/weatherforecast", async (string? city) =>
+{    
+    if (ValidateUserInput(city))
     {
         HttpClient client = new();
 
         client.DefaultRequestHeaders.Add("Key", "3ae22d492bac47b68a3184146220503");
-        HttpResponseMessage response = await client.GetAsync("http://api.weatherapi.com/v1/current.json?q=" + strCityName);
+        HttpResponseMessage response = await client.GetAsync("http://api.weatherapi.com/v1/current.json?q=" + city);
         //response.EnsureSuccessStatusCode();
         string responseBody = await response.Content.ReadAsStringAsync();
 
@@ -38,17 +33,15 @@ app.MapGet("/weatherforecast", async () =>
             // take the response and filter out only the values we want into a new string
             string finalResponse = FilterJSONData(responseBody);
             Console.WriteLine(finalResponse);
-
             return finalResponse;
         }
         else
         {
-
             Console.WriteLine(responseBody);
-
             return responseBody;
         }
     }
+    return "City missing or invalid";
 })
 .WithName("GetWeatherForecast");
 

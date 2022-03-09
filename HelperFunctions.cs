@@ -20,11 +20,10 @@
 
         public static bool ValidateUserInput(string strCityName) 
         {
-            if ((strCityName.Length <= 0) || (strCityName.GetType() != typeof(string)))
+            if ((strCityName == null) || (strCityName.Length <= 0) || (strCityName.GetType() != typeof(string)))
             {
                 return false;
             }
-
             return true;
         }
     }
