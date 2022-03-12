@@ -17,9 +17,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/weatherforecast", async (string? city) =>
-{    
-    if (ValidateUserInput(city))
+app.MapGet("/weatherforecast", async (string? city, string? fahrenheit) =>
+{
+    if (ValidateCityParam(city))
     {
         HttpClient client = new();
 
@@ -31,7 +31,7 @@ app.MapGet("/weatherforecast", async (string? city) =>
         if (response.IsSuccessStatusCode)
         {
             // take the response and filter out only the values we want into a new string
-            string finalResponse = FilterJSONData(responseBody);
+            string finalResponse = FilterJSONData(responseBody, ValidateFahrenheitParam(fahrenheit));
             Console.WriteLine(finalResponse);
             return finalResponse;
         }
