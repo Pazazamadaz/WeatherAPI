@@ -32,7 +32,10 @@ app.MapGet("/weatherforecast", async (string? city, string? fahrenheit) =>
         {
             // take the response and filter out only the values we want into a new string
             string finalResponse = FilterJSONData(responseBody, ValidateFahrenheitParam(fahrenheit));
-            Console.WriteLine(finalResponse);
+                        
+            response = await client.GetAsync("http://api.weatherapi.com/v1/astronomy.json?q=" + city);
+            responseBody = await response.Content.ReadAsStringAsync();
+            finalResponse = FilterJSONAstroData(responseBody, finalResponse);
             return finalResponse;
         }
         else

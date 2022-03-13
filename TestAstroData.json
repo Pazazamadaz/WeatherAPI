@@ -1,0 +1,22 @@
+{
+    "location": {
+        "name": "London",
+        "region": "City of London, Greater London",
+        "country": "United Kingdom",
+        "lat": 51.52,
+        "lon": -0.11,
+        "tz_id": "Europe/London",
+        "localtime_epoch": 1647118696,
+        "localtime": "2022-03-12 20:58"
+    },
+    "astronomy": {
+        "astro": {
+            "sunrise": "06:21 AM",
+            "sunset": "06:00 PM",
+            "moonrise": "11:07 AM",
+            "moonset": "04:02 AM",
+            "moon_phase": "First Quarter",
+            "moon_illumination": "64"
+        }
+    }
+}
