@@ -25,11 +25,26 @@
             return dataNew.ToString();
         }
 
+        public static string FilterJSONAstroData(string response, string finalResponse)
+        {
+            // store JSON in an object we can use dot notation to retreive just the values we need
+            // and store them in a new JSON oject
+            dynamic originaldata = Newtonsoft.Json.Linq.JObject.Parse(finalResponse);
+            dynamic astrodata = Newtonsoft.Json.Linq.JObject.Parse(response);
+            dynamic dataNew = new Newtonsoft.Json.Linq.JObject();
+            dataNew.sunrise = astrodata.astronomy.astro.sunrise;
+            dataNew.sunset = astrodata.astronomy.astro.sunset;
+            dataNew.Merge(originaldata);
+            
+            // return the new JSON object as a string
+            return dataNew.ToString();
+        }
+
         public static bool ValidateCityParam(string strCityName) 
         {
             if (strCityName != null)
             {
-                strCityName.Trim();
+                strCityName = strCityName.Trim();
                 if ((strCityName.Length <= 0) || (strCityName.GetType() != typeof(string)))
                 {
                     return false;
@@ -49,7 +64,7 @@
                 return false;
             }
 
-            strFahrenheit.Trim();
+            strFahrenheit = strFahrenheit.Trim();
 
             if (strFahrenheit == "1" || strFahrenheit == "true")
             {

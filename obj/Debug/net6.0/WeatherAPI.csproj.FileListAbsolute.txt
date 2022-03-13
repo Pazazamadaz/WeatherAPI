@@ -27,3 +27,4 @@ C:\Users\sjdor\source\repos\WeatherAPI\obj\Debug\net6.0\WeatherAPI.genruntimecon
 C:\Users\sjdor\source\repos\WeatherAPI\obj\Debug\net6.0\ref\WeatherAPI.dll
 C:\Users\sjdor\source\repos\WeatherAPI\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\sjdor\source\repos\WeatherAPI\bin\Debug\net6.0\TestLondon.json
+C:\Users\sjdor\source\repos\WeatherAPI\bin\Debug\net6.0\TestAstroData.json
