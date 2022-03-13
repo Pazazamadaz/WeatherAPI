@@ -2,7 +2,7 @@
 {
     public class Functions
     {
-        public static string FilterJSONData(string response)
+        public static string FilterJSONData(string response, bool fahrenheit)
         {
             // store JSON in an object we can use dot notation to retreive just the values we need
             // and store them in a new JSON oject
@@ -12,19 +12,53 @@
             dataNew.region = data.location.region;
             dataNew.country = data.location.country;
             dataNew.localTime = data.location.localtime;
-            dataNew.temperature = data.current.temp_c;
-
+            if (fahrenheit)
+            {
+                dataNew.temperature = data.current.temp_f + "\u2109";
+            }
+            else
+            {
+                dataNew.temperature = data.current.temp_c + "\u2103";
+            }
+           
             // return the new JSON object as a string
             return dataNew.ToString();
         }
 
-        public static bool ValidateUserInput(string strCityName) 
+        public static bool ValidateCityParam(string strCityName) 
         {
-            if ((strCityName == null) || (strCityName.Length <= 0) || (strCityName.GetType() != typeof(string)))
+            if (strCityName != null)
+            {
+                strCityName.Trim();
+                if ((strCityName.Length <= 0) || (strCityName.GetType() != typeof(string)))
+                {
+                    return false;
+                }
+                return true;
+            }
+            else
             {
                 return false;
             }
-            return true;
+        }
+
+        public static bool ValidateFahrenheitParam(string strFahrenheit)
+        {
+            if (strFahrenheit == null)
+            {
+                return false;
+            }
+
+            strFahrenheit.Trim();
+
+            if (strFahrenheit == "1" || strFahrenheit == "true")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
