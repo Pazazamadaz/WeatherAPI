@@ -44,7 +44,7 @@
         {
             if (strCityName != null)
             {
-                strCityName.Trim();
+                strCityName = strCityName.Trim();
                 if ((strCityName.Length <= 0) || (strCityName.GetType() != typeof(string)))
                 {
                     return false;
@@ -64,7 +64,7 @@
                 return false;
             }
 
-            strFahrenheit.Trim();
+            strFahrenheit = strFahrenheit.Trim();
 
             if (strFahrenheit == "1" || strFahrenheit == "true")
             {
